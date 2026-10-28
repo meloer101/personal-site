@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+/* Tokens mirror the Figma variables (Primitives → Theme). Dark only: the site is a night sky. */
+:root {
+  --neutral-50: #f2f2f2;
+  --neutral-400: #9a9a9a;
+  --neutral-950: #0b0b0c;
+
+  --background: var(--neutral-950);
+  --foreground: var(--neutral-50);
+  --muted-foreground: var(--neutral-400);
+  --card: rgb(255 255 255 / 0.04);
+  --card-border: rgb(255 255 255 / 0.08);
+  --card-border-hover: rgb(255 255 255 / 0.16);
+  --accent: rgb(255 255 255 / 0.06);
+  --primary: var(--neutral-50);
+  --primary-foreground: var(--neutral-950);
+  --secondary: rgb(255 255 255 / 0.08);
+  --secondary-hover: rgb(255 255 255 / 0.12);
+  --secondary-foreground: var(--neutral-50);
+  --border: rgb(255 255 255 / 0.08);
+  --contrib-0: var(--card);
+  --contrib-1: rgb(255 255 255 / 0.14);
+  --contrib-2: rgb(255 255 255 / 0.3);
+  --contrib-3: rgb(255 255 255 / 0.55);
+  --contrib-4: rgb(255 255 255 / 0.85);
+  --ring: var(--neutral-400); /* ≥3:1 against the ground and the glass (WCAG 1.4.11) */
+
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-card-border-hover: var(--card-border-hover);
+  --color-accent: var(--accent);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-contrib-0: var(--contrib-0);
+  --color-contrib-1: var(--contrib-1);
+  --color-contrib-2: var(--contrib-2);
+  --color-contrib-3: var(--contrib-3);
+  --color-contrib-4: var(--contrib-4);
+  --font-sans: var(--font-geist-sans), "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-mono: var(--font-geist-mono), "PingFang SC", "Noto Sans SC", monospace;
+}
+
+@theme {
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+/* 1120px content column (x=160 at 1440 wide), 20px gutters on small screens. */
+@utility container-site {
+  width: 100%;
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* Text styles from Figma. Light text on dark gets slightly looser leading. */
+@utility text-display {
+  font-size: clamp(48px, 5vw + 1rem, 72px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+@utility text-heading {
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+@utility text-title {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+@utility text-lead {
+  font-size: clamp(18px, 0.6vw + 14px, 20px);
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+@utility text-body {
+  font-size: 16px;
+  line-height: 1.65;
+}
+@utility text-body-sm {
+  font-size: 14px;
+  line-height: 1.55;
+}
+@utility text-label {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+@utility text-mono-sm {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+@layer base {
+  html {
+    background: var(--background);
+  }
+  body {
+    min-height: 100dvh;
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    /* The starfield is the page's ground; everything floats on it. */
+    background: var(--background) url("/art/stars.svg") repeat;
+    background-size: 480px 480px;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* The probe and the moon bleed past the viewport; clip here (body overflow would propagate to the viewport). */
+  main {
+    overflow-x: clip;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: rgb(255 255 255 / 0.2);
+  }
+}
+
+/* Long-form article text */
+.prose-site {
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgb(242 242 242 / 0.86);
+}
+.prose-site > * + * {
+  margin-top: 1.25em;
+}
+.prose-site h2 {
+  margin-top: 2.2em;
+  color: var(--foreground);
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+.prose-site a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--card-border-hover);
+  text-underline-offset: 4px;
+}
+.prose-site a:hover {
+  text-decoration-color: var(--foreground);
+}
+.prose-site strong {
+  color: var(--foreground);
+  font-weight: 500;
+}
+.prose-site ul {
+  list-style: disc;
+  padding-left: 1.25em;
+}
+.prose-site li + li {
+  margin-top: 0.4em;
+}
+.prose-site :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  background: var(--secondary);
+}
+.prose-site pre {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 20px 24px;
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  overflow-x: auto;
+}
+.prose-site img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+.prose-site ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+}
+.prose-site pre {
+  white-space: pre-wrap;
+}
+.prose-site blockquote {
+  color: var(--muted-foreground);
+  padding-left: 1em;
+  box-shadow: inset 1px 0 0 var(--card-border-hover);
+}
+
+/* Motion: the probe drifts slowly; content never waits on an animation to become visible. */
+@keyframes drift {
+  to {
+    transform: translate(-8px, 10px) rotate(-0.8deg);
+  }
+}
+.drift {
+  animation: drift 30s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .drift {
+    animation: none;
+  }
+}
