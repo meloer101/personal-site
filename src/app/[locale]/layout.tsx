@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { LiquidGlassFilters } from "@/components/liquid-glass-filters";
 import { Navbar } from "@/components/navbar";
 import { copy, isLocale, locales, profile, siteUrl } from "@/content/site";
 import "../globals.css";
@@ -30,6 +31,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   return (
     <html lang={locale === "zh" ? "zh-CN" : "en"} className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body>
+        <LiquidGlassFilters />
         <Navbar locale={locale} />
         {children}
       </body>

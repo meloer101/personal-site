@@ -141,6 +141,23 @@
   }
 }
 
+/* Liquid glass: a clear lens, never frosted. The rim (inset highlights) renders everywhere; the refraction
+   (#liquid-glass, see liquid-glass-filters.tsx) only where backdrop-filter: url() works (Chromium). */
+.liquid-glass,
+.liquid-glass-on-hover:hover {
+  box-shadow:
+    inset 1px 1px 0 rgb(255 255 255 / 0.32),
+    inset -1px -1px 0 rgb(0 0 0 / 0.45),
+    inset 0 0 0 1px rgb(255 255 255 / 0.06);
+  backdrop-filter: url(#liquid-glass);
+}
+.liquid-glass:hover {
+  box-shadow:
+    inset 1px 1px 0 rgb(255 255 255 / 0.5),
+    inset -1px -1px 0 rgb(0 0 0 / 0.5),
+    inset 0 0 0 1px rgb(255 255 255 / 0.1);
+}
+
 /* Long-form article text */
 .prose-site {
   font-size: 17px;

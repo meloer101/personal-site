@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Mail, Rss } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Rss } from "lucide-react";
 import { GithubIcon, XIcon } from "@/components/brand-icons";
 import { IconLink } from "@/components/icon-button";
 import { LunarGround } from "@/components/lunar-ground";
@@ -53,7 +53,20 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
           <div className="container-site relative pt-[160px] pb-6 lg:pt-[260px] lg:pb-[200px]">
             <div className="flex flex-col gap-5">
               <div className="flex items-center gap-4 sm:gap-6">
-                <h1 className="text-display">{profile.name}</h1>
+                {/* Solid text for readers and contrast; a liquid-glass copy (#name-lens) sits on top. */}
+                <h1 className="relative text-display">
+                  {profile.name}
+                  <svg aria-hidden="true" className="pointer-events-none absolute inset-0 size-full overflow-visible">
+                    <text
+                      x="0"
+                      y="0.863em"
+                      filter="url(#name-lens)"
+                      className="fill-foreground [font:inherit] [letter-spacing:inherit]"
+                    >
+                      {profile.name}
+                    </text>
+                  </svg>
+                </h1>
                 <Image
                   src={profile.avatar}
                   alt={t.hero.avatarAlt}
@@ -69,7 +82,6 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={`mailto:${profile.email}`} className={buttonVariants({ variant: "primary" })}>
                 {t.hero.email}
-                <Mail strokeWidth={1.5} aria-hidden="true" />
               </a>
               <a
                 href={profile.github}
@@ -170,7 +182,6 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <a href={`mailto:${profile.email}`} className={buttonVariants({ variant: "primary" })}>
               {profile.email}
-              <Mail strokeWidth={1.5} aria-hidden="true" />
             </a>
             <div className="flex items-center gap-1">
               <IconLink href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub">
