@@ -28,7 +28,7 @@ export function ProjectCard({ name, href, description, language, stars, starsLab
             className="size-[18px] shrink-0 text-foreground opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none"
           />
         </div>
-        <p className="text-body-sm text-muted-foreground">{description}</p>
+        <p className="text-body-sm text-prose-foreground">{description}</p>
       </div>
       <div className="flex items-center gap-4 text-mono-sm text-muted-foreground">
         <span className="flex items-center gap-1.5">

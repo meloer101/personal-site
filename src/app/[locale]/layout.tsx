@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { GeistSans } from "geist/font/sans";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { LiquidGlassFilters } from "@/components/liquid-glass-filters";
 import { Navbar } from "@/components/navbar";
 import { copy, isLocale, locales, profile, siteUrl } from "@/content/site";
 import "../globals.css";
+
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-plus-jakarta-sans" });
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -29,7 +31,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   if (!isLocale(locale)) notFound();
 
   return (
-    <html lang={locale === "zh" ? "zh-CN" : "en"} className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang={locale === "zh" ? "zh-CN" : "en"} className={`${jakarta.variable} ${GeistMono.variable}`}>
       <body>
         <LiquidGlassFilters />
         <Navbar locale={locale} />

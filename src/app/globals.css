@@ -9,6 +9,7 @@
   --background: var(--neutral-950);
   --foreground: var(--neutral-50);
   --muted-foreground: var(--neutral-400);
+  --prose-foreground: rgb(242 242 242 / 0.86); /* sentences to read; muted is for metadata */
   --card: rgb(255 255 255 / 0.04);
   --card-border: rgb(255 255 255 / 0.08);
   --card-border-hover: rgb(255 255 255 / 0.16);
@@ -34,6 +35,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted-foreground: var(--muted-foreground);
+  --color-prose-foreground: var(--prose-foreground);
   --color-card: var(--card);
   --color-card-border: var(--card-border);
   --color-card-border-hover: var(--card-border-hover);
@@ -50,7 +52,7 @@
   --color-contrib-2: var(--contrib-2);
   --color-contrib-3: var(--contrib-3);
   --color-contrib-4: var(--contrib-4);
-  --font-sans: var(--font-geist-sans), "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-sans: var(--font-plus-jakarta-sans), "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
   --font-mono: var(--font-geist-mono), "PingFang SC", "Noto Sans SC", monospace;
 }
 
@@ -162,7 +164,7 @@
 .prose-site {
   font-size: 17px;
   line-height: 1.75;
-  color: rgb(242 242 242 / 0.86);
+  color: var(--prose-foreground);
 }
 .prose-site > * + * {
   margin-top: 1.25em;

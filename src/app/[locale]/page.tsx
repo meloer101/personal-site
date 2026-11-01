@@ -76,7 +76,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
                   className="size-14 shrink-0 rounded-full sm:size-[72px]"
                 />
               </div>
-              <p className="max-w-[540px] text-lead text-muted-foreground">{t.hero.intro}</p>
+              <p className="max-w-[540px] text-lead text-prose-foreground">{t.hero.intro}</p>
               <p className="text-body-sm text-muted-foreground">{t.hero.meta.join("  ·  ")}</p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -178,7 +178,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
           <h2 id="contact-title" className="text-heading">
             {t.contact.title}
           </h2>
-          <p className="mt-6 text-body text-muted-foreground">{t.contact.line}</p>
+          <p className="mt-6 text-body text-prose-foreground">{t.contact.line}</p>
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <a href={`mailto:${profile.email}`} className={buttonVariants({ variant: "primary" })}>
               {profile.email}

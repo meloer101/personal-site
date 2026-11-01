@@ -35,7 +35,7 @@ export default async function Blog({ params }: PageProps<"/[locale]/blog">) {
       <main>
         <header className="container-site pt-[160px] pb-20 lg:pt-[220px] lg:pb-32">
           <h1 className="text-display">{t.blog.title}</h1>
-          <p className="mt-5 max-w-[600px] text-lead text-muted-foreground">{t.blog.intro}</p>
+          <p className="mt-5 max-w-[600px] text-lead text-prose-foreground">{t.blog.intro}</p>
         </header>
 
         <div className="container-site flex flex-col gap-12 pb-24 lg:gap-16 lg:pb-40">
